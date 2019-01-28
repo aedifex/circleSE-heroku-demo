@@ -68,4 +68,4 @@ jobs:
     steps:
       - checkout
       - run: chmod +x scripts/setup_herokucli.sh && scripts/setup_herokucli.sh
-      - run: chmod +x scripts/deploy.sh && scripts/deploy.sh
+      - run: chmod +x scripts/deploy.sh && scripts/deploy.sh $HEROKU_APPLICATION

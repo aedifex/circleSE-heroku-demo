@@ -59,6 +59,8 @@ setup_circleci_project_envars() {
 
     curl -sS -H $headers $URL --data-binary '{"name":"HEROKU_API_KEY","value": "'"$HEROKU_API_KEY"'"}'
     curl -sS -H $headers $URL --data-binary '{"name":"HEROKU_LOGIN","value": "'"$HEROKU_LOGIN"'"}'
+    curl -sS -H $headers $URL --data-binary '{"name":"HEROKU_APPLICATION","value": "'"$HEROKU_APPLICATION"'"}'
+
 }
 
 # make a small change, push change upstream on feature branch (update button), and create PR
