@@ -1,0 +1,111 @@
+<! DOCTYPE html>
+<html>
+  <head>
+    <style>
+     .clearfix:after {
+	visibility: hidden;
+	display: block;
+	content: "";
+	clear: both;
+	height: 0;
+     }
+     body {
+         background: linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3) ),url( {{IMAGE}} );
+         background-size: cover;
+         color: #fff;
+         font-family: Sans-Serif;
+         margin: 0;
+     }
+     a:active, a:hover, a:visited, a:link {
+         color: #fff;
+         text-decoration: none;
+     }
+     .nav {
+         background-color: rgba(0,0,0,0.5);
+         padding: 20px;
+         font-size: 14pt;
+     }
+     .nav ul {
+         margin: 0;
+         padding: 0;
+     }
+     .nav li {
+         list-style: none;
+         float: left;
+         margin: 0 30px;
+     }
+     .nav li.right {
+         float: right;
+     }
+     .hero {
+         width: 700px;
+         margin: 25vh auto 0 auto;
+     }
+     .hero .title {
+         font-size: 55pt;
+     }
+     .hero .subtitle {
+         font-size: 20pt;
+         font-weight: 300;
+     }
+     .hero .subtitle-question {
+         font-weight: 900;
+     }
+     .cta {
+         font-size: 16pt;
+         padding: 15px 30px;
+         margin: 25px 0;
+         border-radius: 5px;
+         display: inline-block;
+     }
+     .cta-red {
+         background-color: #F76C45;
+     }
+     .cta-green {
+         background-color: #5ABF5A;
+     }
+     .learn-more {
+         position: absolute;
+         top: 90vh;
+         left: 0;
+         right: 0;
+         margin: 0 auto;
+         width: 300px;
+         text-align: center;
+         font-size: 14pt;
+         line-height: 1em;
+     }
+     .down-chevron {
+         font-size: 2.5em;
+     }
+    </style>
+  </head>
+  <body>
+    <div class="nav">
+      <ul class="clearfix">
+        <li><a href="#">Products</a></li>
+        <li><a href="#">Solutions</a></li>
+        <li><a href="#">Thought Leadership</a></li>
+        <li><a href="#">Synergy</a></li>
+        <li><a href="#">Cloud Enablement</a></li>
+        <li class="right"><a href="#">Sign In</a></li>
+      </ul>
+    </div>
+    <div class="hero">
+      <h1 class="title">InfoTech</h1>
+      <p class="subtitle"><span class="subtitle-question"> {{HEADLINE}}</span>
+        <p class="subtitle">{{TAGLINE}}</p>
+      </p>
+      <a class="cta cta-red" href="#">Try it now</a>
+      <!-- delete me!! -->
+      <p>Deployment date: {{DATE}}</p>
+    </div>
+    <div class="learn-more">
+      <a href="#">
+        <p>Learn More<br>
+          <span class="down-chevron">&#8964;</span>
+        </p>
+      </a>
+    </div>
+  </body>
+</html>

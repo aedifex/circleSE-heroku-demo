@@ -1,0 +1,71 @@
+workflows:
+  version: 2
+  build-test-&-deploy:
+    jobs:
+      - build
+      - request-testing:
+          type: approval
+          requires:
+            - build
+      - test:
+          requires:
+            - request-testing
+
+version: 2
+jobs:
+  build:
+    working_directory: ~/projectName
+
+    machine: true
+
+    steps:
+      - checkout
+
+      - run:
+          name: setup heroku cli
+          command: |
+            chmod +x scripts/setup_herokucli.sh && scripts/setup_herokucli.sh
+      
+      - run:
+          name: configure deps
+          command: |
+            pip install flask && pip install pytest
+
+      - run:
+          name: run tests
+          command: |
+            cd webapp
+            mkdir test-reports
+            pytest tests.py --junitxml=test-reports/junit.xml
+
+      - store_test_results:
+          path: /home/circleci/projectName/webapp/test-reports/junit.xml
+
+      - store_artifacts:
+          path: /home/circleci/projectName/webapp/test-reports/junit.xml
+
+
+
+      - run: docker build -t registry.heroku.com/blooming-journey-39189/web:${CIRCLE_SHA1} .
+      - run: docker push registry.heroku.com/blooming-journey-39189/web:${CIRCLE_SHA1}
+
+  test:
+    working_directory: ~/projectName
+
+    machine: true
+
+    steps:
+      - checkout
+
+      - run: chmod +x scripts/setup_herokucli.sh && scripts/setup_herokucli.sh
+      - run: docker pull registry.heroku.com/blooming-journey-39189/web:${CIRCLE_SHA1}
+
+  deploy-heroku:
+    working_directory: ~/projectName
+
+    machine: true
+
+    steps:
+      - checkout
+      - run: chmod +x scripts/setup_herokucli.sh && scripts/setup_herokucli.sh
+      - run: chmod +x scripts/deploy.sh && scripts/deploy.sh
