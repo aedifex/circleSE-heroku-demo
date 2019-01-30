@@ -10,6 +10,13 @@ workflows:
       - test:
           requires:
             - request-testing
+      - deploy-heroku:
+          requires:
+            - test
+          filters:
+            branches:
+              only:
+                - master
 
 version: 2
 jobs:
@@ -39,10 +46,10 @@ jobs:
             pytest tests.py --junitxml=test-reports/junit.xml
 
       - store_test_results:
-          path: /home/circleci/projectName/webapp/test-reports/junit.xml
+          path: /home/circleci/projectName/webapp/test-reports
 
       - store_artifacts:
-          path: /home/circleci/projectName/webapp/test-reports/junit.xml
+          path: /home/circleci/projectName/webapp/test-reports
 
 
 
